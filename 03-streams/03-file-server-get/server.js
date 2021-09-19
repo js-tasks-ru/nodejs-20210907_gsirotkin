@@ -10,7 +10,7 @@ server.on('request', (req, res) => {
   const pathname = url.pathname.slice(1);
 
   const filepath = path.join(__dirname, 'files', pathname);
-console.log(pathname);
+
   if(pathname.includes('/')){
     res.statusCode = 400;
     res.end('nested path are not allowed');
@@ -33,7 +33,7 @@ console.log(pathname);
         }
       });
 
-      req.on('aborted', _ => req.destroy());
+      req.on('aborted', _ => reader.destroy());
       break;
 
     default:

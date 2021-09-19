@@ -23,7 +23,7 @@ describe('testing-configuration-logging/unit-tests', () => {
       expect(errors[0]).to.have.property('error').and.to.be.equal('too short, expect 10, got 6');
     });
 
-    it('валидатор проверяет чиловые поля', () => {
+    it('валидатор проверяет нижний порог числовых полей', () => {
 
       const validator = new Validator({
         age: {
@@ -40,7 +40,7 @@ describe('testing-configuration-logging/unit-tests', () => {
       expect(errors[0]).to.have.property('error').and.to.be.equal('too small, expect 18, got 5');
     });
 
-    it('валидатор проверяет чиловые поля', () => {
+    it('валидатор проверяет верхний порог числовых полей', () => {
 
       const validator = new Validator({
         age: {
