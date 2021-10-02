@@ -11,17 +11,18 @@ const router = new Router();
 let subscribers = {};
 
 router.get('/subscribe', async (ctx, next) => {
-
     let id = Math.random();
 
-    subscribers[id] = ctx;
+    const message = await new Promise(resolve => {
+        subscribers[id] = resolve;
 
-    await new Promise(resolve => {
         ctx.req.on('close', _ => {
             delete subscribers[id];
             resolve();
         });
     });
+
+   ctx.body = message;
 });
 
 router.post('/publish', async (ctx, next) => {
@@ -33,11 +34,10 @@ router.post('/publish', async (ctx, next) => {
     let message = ctx.request.body.message;
     
     for(let id in subscribers){
-        subscribers[id].status = 200;
-        subscribers[id].res.end(message);
+        subscribers[id](message);
     }
 
-    ctx.body = message;
+    ctx.body = 'ok';
 });
 
 app.use(router.routes());
