@@ -11,7 +11,8 @@ module.exports = async function authenticate(strategy, email, displayName, done)
     user = await User.create({
         email: email,
         displayName: displayName
-    }).catch(err => done(err));
+    }); //catch(err => done(err)); //тут не нужен .catch() ,т.к.
+        //ошибки "выпадут" в catch блока try/catch и все будет корректно обработано.
 
     done(null, user);
 
