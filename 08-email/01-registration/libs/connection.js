@@ -9,4 +9,7 @@ mongoose.set('useUnifiedTopology', true);
 
 mongoose.plugin(beautifyUnique);
 
+//переопределение дефолтного сообщения об ошибке
+//mongoose.plugin(beautifyUnique, {defaultMessage: `Такой {PATH} уже существует`});
+
 module.exports = mongoose.createConnection(config.mongodb.uri);
