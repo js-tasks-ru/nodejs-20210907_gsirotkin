@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
         message: 'Некорректный email.',
       },
     ],
+    unique:true,
     unique: 'Такой {PATH} уже существует',
   },
   displayName: {
@@ -39,7 +40,7 @@ const userSchema = new mongoose.Schema({
 //простое переопределение сообщения как здесь не работает:
 //https://www.npmjs.com/package/mongoose-beautiful-unique-validation#error-messages
 //надо дополнительно индесировать поле документа
-userSchema.path('email').index({unique:true});
+//userSchema.path('email').index({unique:true});
 
 function generatePassword(salt, password) {
   return new Promise((resolve, reject) => {
