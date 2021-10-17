@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
         message: 'Некорректный email.',
       },
     ],
-    unique:true,
+    //unique: true,
     unique: 'Такой {PATH} уже существует',
   },
   displayName: {

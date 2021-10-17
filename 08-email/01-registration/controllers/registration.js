@@ -29,6 +29,9 @@ module.exports.confirm = async (ctx, next) => {
 
     if(!user) ctx.throw(400, 'Ссылка подтверждения недействительна или устарела');
 
+    //ещё вариант удалить поле из документа:
+    //findBy..And...() передав в качестве объекта изменений $unset: { verificationToken: 1 }
+    
     user.verificationToken = undefined;
     await user.save();
 
