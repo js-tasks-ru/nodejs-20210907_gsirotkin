@@ -8,7 +8,8 @@ const htmlToText = require('nodemailer-html-to-text').htmlToText;
 const SMTPTransport = require('nodemailer-smtp-transport');
 const StubTransport = require('nodemailer-stub-transport');
 
-const transportEngine = process.env.NODE_ENV === 'test' ?
+//всегда использовать StubTransport
+const transportEngine = 1 || process.env.NODE_ENV === 'test' ?
   new StubTransport() :
   new SMTPTransport({
     host: 'smtp.gmail.com',
